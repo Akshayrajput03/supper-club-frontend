@@ -1,0 +1,114 @@
+.auth-page {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+  background: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(196,98,45,0.06) 0%, transparent 70%);
+}
+
+.auth-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-10);
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-card-wide { max-width: 520px; }
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--terracotta);
+  margin-bottom: var(--space-8);
+}
+
+.auth-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+
+.auth-sub {
+  color: var(--stone);
+  font-size: 14px;
+  margin-bottom: var(--space-8);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.auth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.pw-wrap { position: relative; }
+
+.pw-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: var(--stone);
+  padding: var(--space-1);
+}
+.pw-toggle:hover { color: var(--charcoal); }
+
+.role-tabs {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.role-tab {
+  flex: 1;
+  padding: 9px var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1.5px solid var(--cream-dark);
+  background: var(--white);
+  color: var(--stone);
+  transition: all 0.15s;
+  text-align: center;
+}
+.role-tab.active {
+  border-color: var(--terracotta);
+  background: #FDF5F0;
+  color: var(--terracotta);
+}
+.role-tab:hover:not(.active) { border-color: var(--stone-light); color: var(--charcoal); }
+
+.auth-submit {
+  width: 100%;
+  justify-content: center;
+  padding: 12px;
+  font-size: 15px;
+  margin-top: var(--space-2);
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: var(--space-6);
+  font-size: 14px;
+  color: var(--stone);
+}
+.auth-switch a { color: var(--terracotta); font-weight: 500; }
+.auth-switch a:hover { text-decoration: underline; }
+
+@media (max-width: 480px) {
+  .auth-card { padding: var(--space-8) var(--space-6); }
+  .auth-row { grid-template-columns: 1fr; }
+}

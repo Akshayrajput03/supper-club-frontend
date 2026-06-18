@@ -1,0 +1,108 @@
+.listings-page {
+  padding: var(--space-10) 0 var(--space-16);
+}
+
+.listings-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.listings-search {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.search-wrap { position: relative; }
+.search-wrap .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--stone);
+  pointer-events: none;
+}
+
+.cuisine-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.cuisine-chip {
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1.5px solid var(--cream-dark);
+  background: var(--white);
+  color: var(--stone);
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.cuisine-chip.active, .cuisine-chip:hover {
+  border-color: var(--terracotta);
+  background: #FDF5F0;
+  color: var(--terracotta);
+}
+
+.listing-date-text {
+  font-size: 12px;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+.listing-img-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
+.listing-urgent {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--terracotta);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-16) 0;
+}
+
+.empty-icon { font-size: 48px; margin-bottom: var(--space-4); }
+.empty-state h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin-bottom: var(--space-3);
+}
+.empty-state p { color: var(--stone); }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+}
+
+.pagination-info { font-size: 14px; color: var(--stone); }
+
+@media (max-width: 600px) {
+  .listings-header { flex-direction: column; align-items: flex-start; }
+  .listings-search { margin-left: 0; width: 100%; }
+}

@@ -1,0 +1,169 @@
+.dashboard-page {
+  padding: var(--space-10) 0 var(--space-16);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.dashboard-sub { color: var(--stone); margin-top: var(--space-2); }
+
+.dashboard-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--cream-dark);
+  margin-bottom: var(--space-8);
+}
+
+.dash-tab {
+  padding: var(--space-3) var(--space-5);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--stone);
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.15s;
+}
+.dash-tab.active { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+.dash-tab:hover:not(.active) { color: var(--charcoal); }
+
+.bookings-list { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.booking-row {
+  padding: var(--space-6);
+}
+
+.booking-row-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+.booking-row-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.booking-row-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.booking-row-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  font-size: 13px;
+  color: var(--stone);
+}
+.booking-row-meta span { display: flex; align-items: center; gap: 5px; }
+
+.booking-row-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+/* Chat */
+.chat-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30,26,22,0.3);
+  z-index: 200;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.chat-drawer {
+  width: 380px;
+  max-width: 100%;
+  height: 100%;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--cream-dark);
+}
+.chat-header h3 { font-family: var(--font-display); font-size: 18px; }
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.chat-empty { color: var(--stone); font-size: 14px; text-align: center; margin: auto; }
+
+.chat-bubble {
+  max-width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chat-bubble.mine { align-self: flex-end; }
+.chat-bubble.theirs { align-self: flex-start; }
+
+.chat-sender { font-size: 11px; color: var(--stone); }
+
+.chat-bubble p {
+  padding: 9px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.chat-bubble.mine p {
+  background: var(--terracotta);
+  color: var(--white);
+  border-bottom-right-radius: 4px;
+}
+
+.chat-bubble.theirs p {
+  background: var(--cream);
+  color: var(--charcoal);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--cream-dark);
+}
+
+@media (max-width: 600px) {
+  .booking-row-main { flex-direction: column; }
+  .booking-row-actions { justify-content: flex-start; }
+}

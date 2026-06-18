@@ -1,0 +1,78 @@
+.create-page {
+  padding: var(--space-10) 0 var(--space-16);
+}
+
+.create-container { max-width: 720px; }
+
+.create-header { margin-bottom: var(--space-10); }
+.create-sub { color: var(--stone); margin-top: var(--space-2); }
+
+.create-form { display: flex; flex-direction: column; gap: 0; }
+
+.create-section {
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--cream-dark);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.create-section:last-of-type { border-bottom: none; }
+
+.create-section-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.create-hint { font-size: 13px; color: var(--stone); margin-top: -var(--space-3); }
+
+.create-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.menu-builder { display: flex; flex-direction: column; gap: var(--space-3); }
+
+.menu-row { display: flex; gap: var(--space-2); align-items: center; }
+
+.menu-remove { color: var(--stone); padding: 8px; }
+.menu-remove:hover { color: var(--error); }
+
+.add-dish-btn { align-self: flex-start; }
+
+.book-type-options { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+
+.book-type-card {
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.book-type-card.active {
+  border-color: var(--terracotta);
+  background: #FDF5F0;
+}
+.book-type-card:hover:not(.active) { border-color: var(--stone-light); }
+
+.book-type-label { font-weight: 600; font-size: 15px; }
+.book-type-desc { font-size: 13px; color: var(--stone); }
+
+.create-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding-top: var(--space-8);
+}
+
+@media (max-width: 600px) {
+  .create-row { grid-template-columns: 1fr; }
+  .book-type-options { grid-template-columns: 1fr; }
+  .create-actions { flex-direction: column-reverse; }
+  .create-actions .btn { width: 100%; justify-content: center; }
+}

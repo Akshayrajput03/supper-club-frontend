@@ -1,0 +1,213 @@
+.detail-page {
+  padding: var(--space-6) 0 var(--space-16);
+}
+
+.back-btn { margin-bottom: var(--space-5); }
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--space-10);
+  align-items: flex-start;
+}
+
+.detail-main { min-width: 0; }
+
+.detail-gallery { margin-bottom: var(--space-8); }
+
+.detail-main-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.detail-thumbs {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.detail-thumb {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+  border: 2px solid transparent;
+}
+.detail-thumb.active, .detail-thumb:hover { opacity: 1; border-color: var(--terracotta); }
+
+.detail-info { display: flex; flex-direction: column; gap: var(--space-3); }
+
+.detail-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: var(--space-3);
+  line-height: 1.2;
+}
+
+.detail-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--cream-dark);
+  border-bottom: 1px solid var(--cream-dark);
+  margin: var(--space-2) 0;
+}
+
+.detail-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--stone);
+}
+.detail-meta-item svg { color: var(--terracotta); }
+
+.detail-description {
+  font-size: 15px;
+  color: var(--charcoal-mid);
+  line-height: 1.75;
+}
+
+.detail-section { margin-top: var(--space-8); }
+
+.detail-section-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: var(--space-5);
+}
+
+.menu-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 15px;
+  color: var(--charcoal-mid);
+}
+
+.menu-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  flex-shrink: 0;
+}
+
+.host-card {
+  display: flex;
+  gap: var(--space-5);
+  align-items: center;
+  padding: var(--space-5);
+  background: var(--cream);
+  border-radius: var(--radius-md);
+}
+
+.host-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.host-name { font-family: var(--font-display); font-size: 18px; font-weight: 600; }
+.host-style { font-size: 14px; color: var(--stone); margin-top: 2px; }
+
+.host-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: var(--space-2);
+}
+
+.reviews-list { display: flex; flex-direction: column; gap: var(--space-5); }
+
+.review-item {
+  padding: var(--space-5);
+  background: var(--cream);
+  border-radius: var(--radius-md);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.review-author { font-weight: 600; font-size: 14px; }
+
+.review-stars { display: flex; gap: 2px; }
+
+.review-comment { font-size: 14px; color: var(--charcoal-mid); line-height: 1.65; }
+
+/* Booking panel */
+.booking-panel {
+  position: sticky;
+  top: 80px;
+  background: var(--white);
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  box-shadow: var(--shadow-md);
+}
+
+.booking-price { display: flex; align-items: baseline; gap: 2px; }
+.booking-price-amount { font-family: var(--font-display); font-size: 30px; font-weight: 700; }
+.booking-price-label { color: var(--stone); font-size: 15px; }
+
+.booking-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--cream-dark);
+}
+
+.booking-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 13px;
+  font-size: 15px;
+}
+
+.booking-note {
+  font-size: 12px;
+  color: var(--stone);
+  text-align: center;
+}
+
+.booking-full {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  text-align: center;
+}
+.booking-full p { color: var(--stone); font-size: 14px; }
+
+@media (max-width: 900px) {
+  .detail-layout { grid-template-columns: 1fr; }
+  .booking-panel { position: static; }
+}
