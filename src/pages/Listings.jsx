@@ -19,7 +19,10 @@ export default function Listings() {
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    fetchListings();
+    const timer = setTimeout(() => {
+      fetchListings();
+    }, 300);
+    return () => clearTimeout(timer);
   }, [city, cuisine, page]);
 
   const fetchListings = async () => {

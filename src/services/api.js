@@ -1,4 +1,5 @@
 import axios from 'axios';
+import logger from '../utils/logger';
 
 const API_URL = process.env.REACT_APP_API_URL || '/api';
 
@@ -7,18 +8,26 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-// Attach JWT token to every request
+// Attach JWT token + log every request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) config.headers.Authorization = `Bearer ${token}`;
+  logger.info(`API Request: ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`);
   return config;
 });
 
-// Handle 401 globally
+// Log every response and handle 401 globally
 api.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    logger.info(`API Response: ${res.status} ${res.config.url}`);
+    return res;
+  },
   (err) => {
-    if (err.response?.status === 401) {
+    const status = err.response?.status;
+    const url = err.config?.url;
+    logger.error(`API Error: ${status} ${url}`, err.response?.data);
+    if (status === 401) {
+      logger.warn('Unauthorized - clearing session and redirecting to login');
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       window.location.href = '/login';
@@ -40,6 +49,7 @@ export const listingsAPI = {
   create: (data) => api.post('/listings', data),
   update: (id, data) => api.put(`/listings/${id}`, data),
   cancel: (id) => api.delete(`/listings/${id}`),
+  getMine: () => api.get('/listings/mine'),
 };
 
 // ─── BOOKINGS ────────────────────────────────────────
@@ -47,6 +57,7 @@ export const bookingsAPI = {
   create: (data) => api.post('/bookings', data),
   getMine: () => api.get('/bookings/mine'),
   updateStatus: (id, data) => api.put(`/bookings/${id}`, data),
+  getForListing: (listingId) => api.get(`/bookings/listing/${listingId}`),
 };
 
 // ─── REVIEWS ─────────────────────────────────────────
