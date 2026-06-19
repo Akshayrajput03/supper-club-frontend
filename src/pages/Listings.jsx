@@ -13,7 +13,7 @@ export default function Listings() {
 
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [city, setCity] = useState(params.get('city') || 'Chennai');
+  const [city, setCity] = useState(params.get('city') || '');
   const [cuisine, setCuisine] = useState(params.get('cuisine') || '');
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -51,7 +51,7 @@ export default function Listings() {
     <div className="listings-page">
       <div className="container">
         <div className="listings-header">
-          <h1 className="section-title">Dinners in <em style={{ fontStyle: 'italic', color: 'var(--terracotta)' }}>{city}</em></h1>
+        <h1 className="section-title">{city ? <>Dinners in <em style={{ fontStyle: 'italic', color: 'var(--terracotta)' }}>{city}</em></> : 'All Dinners'}</h1>
 
           <form className="listings-search" onSubmit={handleSearch}>
             <div className="form-group" style={{ flex: 1 }}>
