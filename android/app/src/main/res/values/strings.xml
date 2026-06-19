@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SupperClub</string>
+    <string name="title_activity_main">SupperClub</string>
+    <string name="package_name">com.supperclub.app</string>
+    <string name="custom_url_scheme">com.supperclub.app</string>
+</resources>

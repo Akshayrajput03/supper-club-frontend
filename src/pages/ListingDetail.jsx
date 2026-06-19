@@ -63,7 +63,8 @@ export default function ListingDetail() {
         try {
           const bookRes = await bookingsAPI.getMine();
           const found = (bookRes.data || []).find(
-            b => String(b.listingId) === String(id) && b.status === 'COMPLETED'
+            b => String(b.listingId) === String(id) &&
+              (b.status === 'COMPLETED' || b.status === 'CONFIRMED')
           );
           setMyBooking(found || null);
         } catch { /* not logged in */ }
@@ -319,14 +320,22 @@ export default function ListingDetail() {
               </div>
             )}
 
-            {/* Completed booking notice */}
-            {myBooking && !alreadyReviewed && (
+            {/* Confirmed/Completed booking notice */}
+            {myBooking && (
               <div style={{
                 marginTop: 16, padding: '12px 14px', background: '#f0f7f0',
                 borderRadius: 10, fontSize: 13, color: '#2d6a2d',
                 border: '1px solid #c3e0c3',
               }}>
-                ✅ You attended this dinner. Leave a review!
+                ✅ {myBooking.status === 'CONFIRMED' ? 'Your booking is confirmed!' : 'You attended this dinner.'}
+                {listing.host?.phone && (
+                  <p style={{ marginTop: 6, fontWeight: 600, color: '#1a4a1a' }}>
+                    📞 Host contact: {listing.host.phone}
+                  </p>
+                )}
+                {myBooking.status === 'COMPLETED' && !alreadyReviewed && (
+                  <p style={{ marginTop: 4 }}>Leave a review above!</p>
+                )}
               </div>
             )}
           </div>

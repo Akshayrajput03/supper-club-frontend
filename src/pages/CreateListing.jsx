@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { listingsAPI } from '../services/api';
+import api from '../services/api';
+import { useAuth } from '../context/AuthContext';
 import { Plus, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import './CreateListing.css';
 
 export default function CreateListing() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [hostPhone, setHostPhone] = useState('');
+  const [phoneLoaded, setPhoneLoaded] = useState(false);
 
   const [form, setForm] = useState({
     title: '',
@@ -24,28 +29,42 @@ export default function CreateListing() {
     instantBook: true,
   });
 
+  useEffect(() => {
+    // Load existing phone if set
+    api.get('/users/me').then(res => {
+      setHostPhone(res.data.phone || '');
+      setPhoneLoaded(true);
+    }).catch(() => setPhoneLoaded(true));
+  }, []);
+
   const set = (field) => (e) => setForm({ ...form, [field]: e.target.value });
   const setVal = (field, val) => setForm({ ...form, [field]: val });
-
   const setMenuItem = (i, val) => {
     const items = [...form.menuItems];
     items[i] = val;
     setForm({ ...form, menuItems: items });
   };
-
   const addMenuItem = () => setForm({ ...form, menuItems: [...form.menuItems, ''] });
   const removeMenuItem = (i) => setForm({ ...form, menuItems: form.menuItems.filter((_, idx) => idx !== i) });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!hostPhone.trim()) {
+      toast.error('Please add your contact number — guests need it after booking');
+      return;
+    }
     setLoading(true);
     try {
+      // Save phone to profile first
+      await api.put('/users/me', { phone: hostPhone });
+
       const payload = {
         ...form,
         menuItems: form.menuItems.filter(m => m.trim()),
         photoUrls: form.photoUrls.filter(p => p.trim()),
         maxGuests: Number(form.maxGuests),
         pricePerSeat: Number(form.pricePerSeat),
+        dinnerDate: form.dinnerDate ? form.dinnerDate + ':00' : null,
       };
       const res = await listingsAPI.create(payload);
       toast.success('Dinner listing created!');
@@ -155,6 +174,21 @@ export default function CreateListing() {
               <input type="text" className="form-input" placeholder="12 Lake View Road, Adyar"
                 value={form.exactAddress} onChange={set('exactAddress')} required />
             </div>
+          </div>
+          
+          <div className="create-section">
+            <h2 className="create-section-title">Your contact number</h2>
+            <p style={{ fontSize: 13, color: 'var(--stone)', marginBottom: 12 }}>
+              Shared with guests only after their booking is confirmed.
+            </p>
+            <input
+              type="tel"
+              className="form-input"
+              placeholder="+91 98765 43210"
+              value={hostPhone}
+              onChange={e => setHostPhone(e.target.value)}
+              required
+            />
           </div>
 
           {/* Photos */}
